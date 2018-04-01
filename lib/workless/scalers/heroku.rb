@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
 require 'platform-api'
+require 'uptimerobot'
 
 module Delayed
   module Workless
     module Scaler
       class Heroku < Base
         extend Delayed::Workless::Scaler::HerokuClient
+        extend Delayed::Workless::Scaler::UptimeRobotClient
 
         def self.up
           return unless workers_needed > min_workers && workers < workers_needed
           updates = { "quantity": workers_needed }
           client.formation.update(ENV['APP_NAME'], 'worker', updates)
-          # TODO: Start uptime_robot monitor
-          puts "---------*********** Forked Workless Gem - Up ***********---------"
+          resume_monitor(ENV['APP_NAME'])
         end
 
         def self.down
           return if workers == workers_needed
           updates = { "quantity": workers_needed }
           client.formation.update(ENV['APP_NAME'], 'worker', updates)
-          # TODO: Pause uptime_robot monitor if workers is 0
-          puts "---------*********** Forked Workless Gem - Down ***********---------"
+          pause_monitor(ENV['APP_NAME']) if workers.zero?
         end
 
         def self.workers
