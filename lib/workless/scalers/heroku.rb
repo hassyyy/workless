@@ -12,12 +12,16 @@ module Delayed
           return unless workers_needed > min_workers && workers < workers_needed
           updates = { "quantity": workers_needed }
           client.formation.update(ENV['APP_NAME'], 'worker', updates)
+          # TODO: Start uptime_robot monitor
+          puts "---------*********** Forked Workless Gem - Up ***********---------"
         end
 
         def self.down
           return if workers == workers_needed
           updates = { "quantity": workers_needed }
           client.formation.update(ENV['APP_NAME'], 'worker', updates)
+          # TODO: Pause uptime_robot monitor if workers is 0
+          puts "---------*********** Forked Workless Gem - Down ***********---------"
         end
 
         def self.workers
