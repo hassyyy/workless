@@ -10,16 +10,16 @@ Gem::Specification.new do |s|
   s.version = '2.2.0'
 
   s.required_rubygems_version = Gem::Requirement.new('>= 1.3.6') if s.respond_to? :required_rubygems_version=
-  s.authors = ['davidakachaos', 'lostboy']
-  s.date = '2017-10-10'
-  s.description = 'Extension to Delayed Job to enable workers to scale up when needed'
-  s.email = 'davidakachaos@gmail.com'
+  s.authors = ['hassyyy']
+  s.date = '2018-04-01'
+  s.description = 'Extension to Workless Gem to enable Uptime Robot when is running'
+  s.email = 'nmohaemdasan@gmail.com'
 
   s.files = Dir.glob('{rails,lib}/**/*') + %w(LICENSE README.md )
 
   s.homepage = 'http://github.com/lostboy/workless'
   s.require_paths = ['lib']
-  s.summary = 'Use delayed job workers only when theyre needed on Heroku'
+  s.summary = 'Use delayed job workers only when theyre needed on Heroku and keep them alive'
 
   s.add_runtime_dependency('rails')
   s.add_runtime_dependency('platform-api')
@@ -32,7 +32,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rspec')
 
   s.post_install_message = %q{
-Workless 2.2.0 introduces a backwards-incompatible change!
-Please update your Heroku config to use WORKLESS_API_KEY instead of HEROKU_API_KEY!!
-}
+Make sure that you have added WORKLESS_API_KEY, APP_NAME, UPTIME_ROBOT_API_KEY to the config vars of your Heroku app}
 end
