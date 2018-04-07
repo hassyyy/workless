@@ -23,7 +23,7 @@ gem "workless", git: "https://github.com/hassyyy/workless.git"
  
 - Add your Heroku app name / [API key](https://devcenter.heroku.com/articles/authentication) as config vars to your Heroku App.
 ```
-heroku config:add WORKLESS_API_KEY=your_heroku_api_key APP_NAME=your_heroku_app_nam
+heroku config:add WORKLESS_API_KEY=your_heroku_api_key APP_NAME=your_heroku_app_name
 ```
 
 - Signup an [Uptime Robot](https://uptimerobot.com) Account. Create a new monitor with the following configurations:
